@@ -1,44 +1,45 @@
 package edu.pingpong.EnZinlum;
 
+import java.rmi.server.Skeleton;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 
 public class Address {
     
-    private PublicKey publicDirection;
-    private PrivateKey privateDirection;
+    private PublicKey PK = null;
+    private PrivateKey SK = null;
     private double balance = 0.0;
     private final String symbol = "EZI";
 
     public Address(PublicKey publicDirection, PrivateKey privateDirection, 
         double balance){
-        this.publicDirection = publicDirection;
-        this.privateDirection = privateDirection;
+        this.PK = publicDirection;
+        this.SK = privateDirection;
         this.balance = balance;
     }
 
-    public PublicKey getPublicDirection() {
-        return publicDirection;
+    private PublicKey getPublicDirection() {
+        return this.PK;
     }
 
     public void setPublicDirection(PublicKey publicDirection) {
-        this.publicDirection = publicDirection;
+        this.PK = publicDirection;
     }
 
-    public PrivateKey getPrivateDirection() {
-        return privateDirection;
+    private PrivateKey getPrivateDirection() {
+        return this.SK;
     }
 
-    public void setPrivateDirection(PrivateKey privateDirection) {
-        this.privateDirection = privateDirection;
+    private void setPrivateDirection(PrivateKey privateDirection) {
+        this.SK = privateDirection;
     }
 
-    public double getBalance() {
-        return balance;
+    double getBalance() {
+        return this.balance;
     }
 
-    public void setBalance(double balance) {
-        this.balance = balance;
+    boolean isSKpresent(){
+        return this.getPrivateDirection() != null ? true : false;
     }
 
     @Override
